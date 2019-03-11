@@ -16,7 +16,9 @@ Nanjin Zeng(id:15220162202482) WISE IUEC 2016
 
 You may need to wait a little moment for mathemetical formulas to load. 
 
-If you do not want to wait, you could visit [to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-03-10-growth-function-and-VC-dimension.pdf)
+If you do not want to wait, you could visit here.
+ 
+[to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-03-10-growth-function-and-VC-dimension.pdf)
 
 You can also get a .lyn version in the same github folder because it is written with latex.
 
