@@ -2,8 +2,8 @@
 layout: post
 title:  "Growth function and VC dimension"
 date:   2019-03-11 20:24:00 +0800
-categories: jekyll
-tag: jekyll
+categories: weekly
+tag: VC dimension
 ---
 
 * content
