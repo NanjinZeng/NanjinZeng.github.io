@@ -21,7 +21,7 @@ displayIndent: "5em"
 Nanjin Zeng(id:15220162202482) WISE IUEC 2016
 
 Bug fixed!
-You need not to wait for mathemetical formulas to load. 
+You need not wait for mathemetical formulas to load. 
  
 [to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-03-30-Bootstrap_Method_Explained.pdf)
 

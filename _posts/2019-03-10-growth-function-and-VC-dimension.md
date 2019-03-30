@@ -9,14 +9,19 @@ tag: VC dimension
 * content
 {:toc}
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+jax: ["input/TeX","output/HTML-CSS"],
+displayAlign: "left",
+displayIndent: "5em"
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" type="text/javascript"></script>
 
 Nanjin Zeng(id:15220162202482) WISE IUEC 2016
 
-You may need to wait a little moment for mathemetical formulas to load. 
-
-If you do not want to wait, you could visit here.
+Bug fixed!
+You need not wait for mathemetical formulas to load. 
  
 [to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-03-10-growth-function-and-VC-dimension.pdf)
 
@@ -34,9 +39,9 @@ And to describe the complexity, we were introduced to two new concepts:
 
 >$$m_{H}\left(N\right)=\max_{x_{1},\cdots,x_{N}\epsilon X}\mid H\left(x_{1},\cdots,x_{N}\right)\mid$$
 
->i.e.\\(m_{H}\left(N\right) \\)is the maximum possible number of dichotomies Hcan generate on a data set of N points.
+>i.e.$$m_{H}\left(N\right)$$is the maximum possible number of dichotomies Hcan generate on a data set of N points.
 
->The Vapnik-Chervonenkis (VC) dimension of H, denoted \\(d_{vc}\left(H\right)\\), is the size of the largest data set that H can shatter.
+>The Vapnik-Chervonenkis (VC) dimension of H, denoted $$d_{vc}\left(H\right)$$, is the size of the largest data set that H can shatter.
 
 These concept sounds a little bit incomprehensible to us undergraduate students. In addition, the professor does not mention too much in this part but concentrate on the generally understanding the meaning to balance the bias and variance of the model. So, for this blog, I want to introduce these two concepts precisely and intuitively. (For mathematical proof, you can read the article which I mention below.)
 
@@ -45,7 +50,7 @@ These concept sounds a little bit incomprehensible to us undergraduate students.
 I find the literature of Vapnik and Chervonenkis, on the uniform convergence of relative frequencies of events to their probabilities (translated ver. in English), theory of probability and applications, volume 12, 1971. I consider that it is the origin of these two concepts. Though in this article, they did not use the term of “VC dimension”, I find a property of grow function could be useful for us.
 >Property of the growth function 
 >
->The growth function for a class of events S has the following property : it is either identically equal to \\(2^{r}\\)or is majorized by the power function \\(r^{n}+1\\), where n is a constant equaling the value of r for which the equality \\(m^{S}(r)=2^{r}\\)is violated for the first time.[4]
+>The growth function for a class of events S has the following property : it is either identically equal to$$2^{r}$$or is majorized by the power function $$r^{n}+1$$, where n is a constant equaling the value of r for which the equality $$m^{S}(r)=2^{r}$$is violated for the first time.[4]
 
 The parameter n is what we call VC dimension these days! To many kinds of H, we cannot find a general solution for us to determin VC dimension, but in some simple situation, this relationship could help us understanding the meaning of growth function and VC dimensions.
 
@@ -60,36 +65,36 @@ With the example in appendix I in our lecture, we could test this property and r
 
 Let us condider a simple situation.
 
-If there is only 1 point, for the division point lies on left or right, we have 2 dichotomies. \\(m_{H}(1)=2\\), which satisfies \\(m_{H}(1)=2^{1}\\)
+If there is only 1 point, for the division point lies on left or right, we have 2 dichotomies. $$m_{H}(1)=2$$, which satisfies $$m_{H}(1)=2^{1}$$
 
-If there is 2 point, there is only 3 dichotomies. \\(m_{H}(2)=3\\), which violates \\(m^{S}(r)=2^{r}\\)and turn to \\(m^{S}(2)=2^{1}+1\\) . The positive ray could not divide them into “+,-".
+If there is 2 point, there is only 3 dichotomies. $$m_{H}(2)=3$$, which violates $$m^{S}(r)=2^{r}$$and turn to $$m^{S}(2)=2^{1}+1$$ . The positive ray could not divide them into “+,-".
 
-If there is more than 3 point, \\(m^{S}(r)=r^{1}+1=r+1\\), as it stated in the appendix of our lecture notes.
+If there is more than 3 point, $$m^{S}(r)=r^{1}+1=r+1$$, as it stated in the appendix of our lecture notes.
 
-So, for this case, \\(d_{vc}\left(H\right)=n=1\\)
+So, for this case, $$d_{vc}\left(H\right)=n=1$$
 
 3.2 Set of Lines (liner separators)							{#Lines}
 ------------------------------------
-In \\(\mathbb{\mathbb{R}}^{2}\\),for less than 3 points, we have proved in class that it could solve any situations. \\(m^{S}(r)=2^{r}for r\leq3\\)
+In $$\mathbb{\mathbb{R}}^{2}$$,for less than 3 points, we have proved in class that it could solve any situations. $$m^{S}(r)=2^{r}for r\leq3$$
 
 As we mentioned in the lecture, when it comes to 4 points, there are two situation we cannot divide them using any line.
 
 ![4]({{ '/styles/images/4.jpg' | prepend: site.baseurl  }})
 
-So, for this case, \\(m^{S}(4)=4^{3}+1=65\\), \\(d_{vc}\left(H\right)=n=3\\).
+So, for this case, $$m^{S}(4)=4^{3}+1=65$$, $$d_{vc}\left(H\right)=n=3$$.
 
 3.3 Convex Sets							{#ConvexSets}
 ------------------------------------
 
 ![CS]({{ '/styles/images/CS.jpg' | prepend: site.baseurl  }})
 
-Obviously, \\(m^{S}(r)=2^{r}\\). All we have to do is to connect the neighbour point which is “+". The is no finite n could violate the equity.
+Obviously, $$m^{S}(r)=2^{r}$$. All we have to do is to connect the neighbour point which is “+". The is no finite n could violate the equity.
 
-For this case, \\(d_{vc}\left(H\right)=\infty\\)
+For this case, $$d_{vc}\left(H\right)=\infty$$
 
 4.conclusion		{#conclusion}
 ====================================
-For which I mentioned above, I want to emphasize that the VC dimension is is a constant equaling the value of r for which the equality of growth function \\(m^{S}(r)=2^{r}\\)is violated for the first time.
+For which I mentioned above, I want to emphasize that the VC dimension is is a constant equaling the value of r for which the equality of growth function $$m^{S}(r)=2^{r}$$is violated for the first time.
 
 After last Tuesday's class, my classmate asked me what is the VC dimension. But I don't truly understand this concept either. I hope that could be useful for us learning these concepts.
 
