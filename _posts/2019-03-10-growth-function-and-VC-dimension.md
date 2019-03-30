@@ -50,7 +50,7 @@ These concept sounds a little bit incomprehensible to us undergraduate students.
 I find the literature of Vapnik and Chervonenkis, on the uniform convergence of relative frequencies of events to their probabilities (translated ver. in English), theory of probability and applications, volume 12, 1971. I consider that it is the origin of these two concepts. Though in this article, they did not use the term of “VC dimension”, I find a property of grow function could be useful for us.
 >Property of the growth function 
 >
->The growth function for a class of events S has the following property : it is either identically equal to$$2^{r}$$ or is majorized by the power function $$r^{n}+1$$,  where n is a constant equaling the value of r for which the equality $$m^{S}(r)=2^{r}$$ is violated for the first time.[4]
+>The growth function for a class of events S has the following property : it is either identically equal to $$2^{r}$$ or is majorized by the power function $$r^{n}+1$$,  where n is a constant equaling the value of r for which the equality $$m^{S}(r)=2^{r}$$ is violated for the first time.[4]
 
 The parameter n is what we call VC dimension these days! To many kinds of H, we cannot find a general solution for us to determin VC dimension, but in some simple situation, this relationship could help us understanding the meaning of growth function and VC dimensions.
 
@@ -94,7 +94,7 @@ For this case, $$d_{vc}\left(H\right)=\infty$$
 
 4.conclusion		{#conclusion}
 ====================================
-For which I mentioned above, I want to emphasize that the VC dimension is is a constant equaling the value of r for which the equality of growth function $$m^{S}(r)=2^{r}$$is violated for the first time.
+For which I mentioned above, I want to emphasize that the VC dimension is is a constant equaling the value of r for which the equality of growth function $$m^{S}(r)=2^{r}$$ is violated for the first time.
 
 After last Tuesday's class, my classmate asked me what is the VC dimension. But I don't truly understand this concept either. I hope that could be useful for us learning these concepts.
 
