@@ -9,8 +9,14 @@ tag: Bootstrap
 * content
 {:toc}
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+jax: ["input/TeX","output/HTML-CSS"],
+displayAlign: "left",
+displayIndent: "5em"
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" type="text/javascript"></script>
 
 Nanjin Zeng(id:15220162202482) WISE IUEC 2016
 
@@ -38,7 +44,7 @@ I wonder how this method works well and what the advantage of this method is. In
 After reading the paper of Efron(1979), the first paper carry out this idea, I know more about this method. Before Efron raised this method, the statisticians used another diffenent resampling method, Jackknife method by Quenouille(1956). The process of this method is also insteresting.
 >Let T_{n}=T(X_{1},\cdots,X_{n}) be a statistic and T_{(-i)} denote the statistice with the i^{th} observation removed. Let \overline{T_{n}}=\frac{\sum_{i=1}^{n}T_{(-i)}}{n}. The jackknife estimate of Var(T_{n})is[2]
 
->v_{jack}=\frac{n-1}{n}\sum_{i=1}^{n}(T_{(-i)}-\overline{T_{n}})^{2}
+>$$v_{jack}=\frac{n-1}{n}\sum_{i=1}^{n}(T_{(-i)}-\overline{T_{n}})^{2}$$
 
 It means that we take one of the observations for sample each time. Then we get n jackknife samples. Then we use these samples to recompute the estimator.
 
