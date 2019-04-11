@@ -88,7 +88,7 @@ It means that ties are set to the first tied group.
 
 It means that the predition in ties would base on the nearest point. But it may still remain in a tie in some extreme situations. Then we do not make any predictions in these point.
 
-3 Method Demonstration		{#Demonstration}
+3.Method Demonstration		{#Demonstration}
 ====================================
 To show it intuitively, I use the same data (Credit Card Default data) in Stata15. In this example, as we did in the lecture using R, we perform the KNN on the trainning data and see the effect $$\left(E_{in}\right)$$.
 >import delimited "C:\Users\91367\Desktop\junior 2nd term\microeconometrics\hw\knn\Default.csv"
@@ -113,7 +113,7 @@ The result using KNN
 
 From this table, it reveals that the error is not so small. We make 205 false-negative prediction and 50 false-positive predictions on the trainning data. In this case, false-negative result is critical because it means that we give credit to someone who finally defaulted. However, this result is on the trainning data. We should combine this idea with other method like cross-validation to evaluate the validity of our classifier.
 
-4 Some notices using K-Nearest Neighbor classifier		{#conclusion}
+4.Some notices using K-Nearest Neighbor classifier		{#conclusion}
 ====================================
 From the example, we can feel some drawbacks in our "simple" K-nearest Neighbor classifier we need to notice.
 
