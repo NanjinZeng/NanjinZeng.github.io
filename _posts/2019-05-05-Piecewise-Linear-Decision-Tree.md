@@ -20,7 +20,7 @@ displayIndent: "5em"
 
 Nanjin Zeng(id:15220162202482) WISE IUEC 2016
  
-[to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-04-21-The-Development-from-Ridge-to-Lasso.pdf)
+[to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-04-21-The-Development-from-Ridge-to-Lasso.pd)
 
 You can also get a .lyn version in the same github folder because it is written with latex.
 
