@@ -20,141 +20,117 @@ displayIndent: "5em"
 
 Nanjin Zeng(id:15220162202482) WISE IUEC 2016
  
-[to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-04-21-The-Development-from-Ridge-to-Lasso.pd)
+[to-download-pdf-ver](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-05-05-Piecewise-Linear-Decision-Tree.pdf)
 
 You can also get a .lyn version in the same github folder because it is written with latex.
 
 1.Introduction		{#Introduction}
 ====================================
-In the lecture, we have learnt the new idea of an amazing method, Regularization.
-
-In the Econometric course which I attended in last semester, I know about the OLS method. It is an Best Linear Unbiased Estimator. It seems nothing better than OLS because the economists concerns about causal relationship without bias. But for this case, I know the new idea that we could sacrifice the unbias and achieve low variance, which could improve the accuracy by reducing the out-of-sample error significantly. That is why I want to learn more about how this idea formed and been improved.
-
-In this blog, I would carry out a brief look about how the regularization developed from Ridge to Lasso. A method the Nonnegative Garrote (Breiman, 1993) would be talked because it is a method invented before the Lasso, which offsets some drawbacks in the Ridge and has some similarity with Lasso. It is indispensable as the motivation for the lasso.[1] I would introduce them one by one in a contribution view, what improvement they had made comparing to the previous one.
+In the challenge "trees", we are required to find a method to construct a piecewise linear decision tree. It means that we should find a tree-based model, but imposing a linear relationship instead of values on the leaf. In this blog, I want to introduce a method called M5' Algorithm, which is a common method for buliding Piecewise Linear Decision Tree, or Model Tree. In section 2, I would give a brief explaination for its mechanism and development path. In section 3, I would demonstrate this method using the demo example in lecture, data boston housing price, with a compare with other methods introduced in class.
 
 
-2.The Development path		{#path}
+2.Model Tree		{#Model}
 =====================================
+After looking up the journal data base, I find that many algorithms were raised in 1990s might help us to construct this kind of models, like MARS using recursive patitioning to choose the knots[1] (Friedman, 1991/Actually, it is not a tree base model.), SUPPORT (“Smoothed and Unsmoothed Piecewise-Polynomial Regression Trees”, Chaudhuri et al, 1994) selecting its splits by analysis of the distributions of the residuals[2]. But I want to introduce a most popular one, M5 model tree. It is widely used even in other science filed, such as precticting wave height (A Etemad-Shahidi et al, 2009) and river flow forecasting (MT Sattari et al, 2013).
 
 
-2.1 the Ridge	     {#Ridge}
+2.1 M5 Algorithm (Quinlan, 1992)	     {#Quinlan}
 ------------------------------------
-The Ridge regression is a biased estimation invented by Hoerl and Kennard (1970). Its feature has been showed in the lecture. But in the papar, the authors give us a different view of the Ridge using the matrix, which could help us understanding the mechanism of Ridge.
+After the invention of CART system for decision trees(Breiman et al, 1984), people were curious about if they could extend this techniques to deal with numerically-valued attributes by choosing a threshold at each node of the tree and testing the value against threshold.[3] But they do not think about the situations that where the class value is numeric. In 1992, an algorithm called M5 was raised by Quinlan, which is a resemble method combining the linear regression function and decision trees.
 
->In the standard model of mutiple linear regression, the parameter is estimated by
+The procedures buliding a model tree is similar to build a decision tree using CART
 
->$$\hat{\beta}_{OLS}=(X'X)^{-1}X'Y$$. 
+1. In the first stage, a decision tree induction algorithm is used to bulid a tree. The splitting criterion is based on the standard deviation of the class value. Slighly different to the CART, it does not choose the one gives the greatest expected reduction in variance. It tests it splits by maximizing the standard deviation reduction (SDR), calculated by 
+>$$SDR=sd(T)-\sum_{i}\frac{\left[T_{i}\right]}{\left[T\right]}*sd\left(T_{i}\right)$$
+> 
+>where $$T$$ is the set of examples that reach the node and $$T_{i}$$ is the set that result from splitting the node accordiung to the chosen attribute.
 
->This estimation procedure is a good one if $$X'X$$, when in the form of a correlation matrix, is nearly a unit matrix.[2]
+2. After buliding the initial tree, the second stage is to prune the tree. First, the absolute error is averaged for each of the training examples that reach that node. To compensate the underestimate of the $$E_{out}$$, it is multiplied by the factor $$\frac{n+v}{n-v}$$ ,where n is the number of training example that reach the node and v is the number of training examples that reach the node and v is the number of parameters in the model. To notice, the model is calculated using only the attributes that are tested in the subtree below this node. That could be a fair compare with subtree. Once a linear model constructed in this way is in place for a interior node, the tree is pruned back from the leaves.
 
-To be brief, it means that the condition for OLS to work well is that $$X'X$$ does not equal to 0. It requires the $$X$$ is a non-singular matrix. But there is some case in which $$X'X$$ is close to zero, in which case the variance is huge for $$var(\hat{\beta}_{OLS})=\sigma^{2}(X'X)^{-1}$$, when[3]
+3. The final stage is a smoothing process. It is a complex process so I want to skip it. But the basic idea is that, this process decrease the discountinuitics between adjacent linear models at the leaves, which is believed to increase the accuracy of preductions.
 
-1. There is too many predictors. (p>N)
+The author claims and illustrates it with data that this M5 model tree have advantages over regression trees in both compactness and predition accuracy, attributable to the abiliy of model trees to exploit local linearity in data.
 
-2. There are strong correration between some predictiors. (Multicollinearity)
-
-These two problems rarely occurs in our previous study. When we begin to learn ecometrics, we choose a small number of predictors stepwisely using the old criteria if the coefficant is statistically significant. But for big data science, we face a large number of predictors each have different levels of effect on the dependent variable. Doing stepwise subset selection is time-costly and has some other problems.
-
->One of the solution is doing the Ridge regression. In this way, the parameter is estimated by[4]
-
->$$\hat{\beta}_{R}=(X'X+kI)^{-1}X'Y=WX'Y$$
-
-It could ease the problem 2 by create an invertible matrix. Furthermore, it could avoid probably overfit by reducing the variance of estimators.
-
-2.2 the Nonnegative Garrote	{#nng}
+2.2 M5' Algorithm (Wang & Witten, 1997)	{#Wang}
 ------------------------------------
-But the Ridge still have some drawbacks,[5]
+As a resemble method combining linear regression and decision trees, the M5 model tree give high prediction accuracy with the small price on interpretation. But for the prototype in 1992, it still has some ambigious point.
 
-1. The Ridge gives a regression no simpler than the OLS.
+1. It do not allow a split that create a leaf with fewer than two training examples. $$(n=v=1)$$
 
-2. The Ridge is not scale invariant. If the scales used to express the individual predictor varibles are changed, then the ridge coefficients do not change inversely proportional to the changes in the variable scales.
+2. M5 do not split a node if it represents very few examples or their values vary only slightly. The author shows that the result are not very sensitive to the choice of threshold.[3]
 
-For drawback 1, it needs something like subset selection which could determine a smaller subset that exhibits the strongest effects. For drawback 2, the new method should be scale invariant. That comes the Nonnegative Garrote.
+3. At the pruning process, attributes are dropped from a model when their effect is somall. But this criterion is too strict, sometimes these attributes may participate in higher level model.
 
->The procedure of the Nonnegative Garrote is[5]
+4. M5 do not give a clear notice how to deal with missing attribute values.
+
+In order to ease these draw back, they give a improved algorithm called M5'. Being brief, I focus on the main improvement of this model. It modified the SDR to
+
+>$$SDR=\frac{M}{\left[T\right]}*\beta\left(i\right)*\left[sd(T)-\sum_{j\in\left\{ I,R\right\} }\frac{\left[T_{j}\right]}{\left[T\right]}*sd\left(T_{j}\right)\right]$$ 
 >
->Let $$\{\hat{\beta}_{OLS}\}$$ be the original OLS estimates
->
->Take $$\{c_{k}\}$$ to minimize $$\sum_{k}(y_{n}-\sum_{k}c_{k}\hat{\beta}_{OLS}X_{kn})^{2}$$ under the constraints $$c_{k}\geq0, \sum_{k}c_{k}\leq s$$
->
->Then $$\hat{\beta}_{NNG}=c_{k}\hat{\beta}_{OLS}$$
->
->As the Garrote is drawn tighter by decreasing s, more of the $$\{c_{k}\}$$becomes zero and the remaining $$\hat{\beta}_{NNG}$$is shrunken.
+>$$m$$ is the number of examples without missing values for that attribute. $$\beta\left(i\right)$$ is the correction factor which is unity for a binary split and decays exponentially as the number of values increases. 
 
-By this way, the Garrote eliminates some variables which do not have large effect on dependent variable. To be intuitive, let us compare the form of the nn-garrote coffients $$\hat{\beta}_{NNG}=(1-\frac{\lambda^{2}}{\hat{\beta}_{OLS}^{2}})^{+}\hat{\beta}_{OLS}$$ and ridge coefficients $$\hat{\beta}_{R}=\frac{1}{1+\lambda}\hat{\beta}_{OLS}$$. It is obvious that the Ridge would keep all the predictors because the shrinkage factor $$\frac{1}{1+\lambda}>0$$. But for the case of the Non-negative Garrote, the shrinkage factor could be zero if $$\lambda>\hat{\beta}_{OLS}$$. It performs as the same as we elimates this predictor in our regression.
+The author states, they first deal with all examples for which the value of the spliting attribute is known. If it is continous, they determine a numeric threshold for splitting in the usual way. For each split point, they calculate the SDR according to this formular.[]
 
-Why we should have the chance to have the shrinkage factor be zero? There is a example. John von Neumann famously said
-
->With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.
-
-By this he meant that one should not be impressed when a complex model fits a data set well. With enough parameters, you can fit any data set.
-
-(In fact, someone truly draw this funny curve using 4-5 parameters... [6])
-
-That's why we need to select a subset of predictors. A mathmetical prove of the importance in reducing the number of predictors is provided on our lecture. For each additional predictor adds the same amount of variance $$\frac{\sigma^{2}}{N}$$, regardless of whether its true coefficient is large or small.[4]
-
-However, comparing the subset selection to the Non-negative Garrote, subset selection is discrete process, it is like making the shrinkage factor be 0 or 1. For the predictor you do not decide to drop, you leave it as before, but the Non-negative Garrote drop some and shrinken the others. It retains some predictors which have lower effect but shrink it smaller to reduce the variance of your model. It is a continuous process and hence is more stable.
-
-2.3 the Lasso	{#Lasso}
-------------------------------------
-Motivated by the idea of the Nonnegative Garrote, the new method Lasso came in 1995.
-
-Revise with the two problems we talked at the beginning of this blog, the Ridge eases the problem 2, overfit with the existence of multicollinearity. Though the Nonnegative Garrote avoids some drawbacks of the Ridge, its solution depends on the sign and the magnitude of OLS estimates. In overfit or highly correlated setting where the OLS estimates behave poorly, the garotte may also suffer.[1]
-
-This problem is obvious in the graph in the paper(Tibshirani, 1995) shows
-
-![Lasso]({{ '/styles/images/lasso1.jpeg' | prepend: site.baseurl  }})
-
-the garotte have the combination of advantages of subset regression and ridge regression. However, as the bata increase, the shinkage factor become bigger. But this problem does not exist in Lasso as the shrinkage effect is stable.
+To conclude, this system deals effectively with both enumcrated attributes and missing attribute values. It has the advantage that the models it generates are compact and relatively comprehensible.
 
 
-3.Conclusion		{#Conclusion}
+3.Method demonstration — Boston Housing Price		{#demonstration}
 ====================================
-For all above, it sounds like the Lasso regression has lots of benefit comparing to the former methods. But we could not apply Lasso to all the situations. Remember the initial idea of regularization is to handle the problem with high demensions and overfit. More precisely, Lasso could be considered with an normal linear model with Laplace prior[7], it means we have the prior knowledge that our model has too many predictors and tends to be overfitted.
+In application, we could use a R pack called "Rweka" to realize M5' Algorithm. Noticed that it is based on Java, you should have a Java SE environment and R pack "rJava" on your mechine.
 
-For example, in the paper, the author make a comparison between these methods in their relative merits.[1]
+The basic syntax is that[4]
 
-1. small number of large effects—-subset selection does best
+>M5P(formula, data, subset, na.action, control=weka_control(), options=NULL)
 
-2. small to moderate number of moderate-size effects—the lasso does best
+In this case, precluded by the length of this blog, I do not want to introduce advanced option of this function based on Weka algorithm.
 
-3. large number of small effects—-the ridge regression does best
+First, we create trainning and test sets.
 
-In conclusion, we should carefully determin that if we should do the regularization and choose the appropriate regularizers based on our prior belief.
+>require(MASS)
+>
+>set.seed(1234) #set random seed in order to repeat the result
+>
+>train = sample(nrow(Boston), nrow(Boston)*0.6)
+>
+>data_train = Boston[train,]
+>
+>data_test = Boston[-train,]
+
+For the main part,
+
+>require(RWeka)
+>
+>m.m5p <- M5P(medv~.,data=data_train) #train the classifier using training data
+>
+>yhat <- predict(m.m5p,data_test) #test the classifier using L2 loss
+>
+>mean((yhat-ytrue)^2)
+
+Here is the error on the test data, comparing to other algorithm we have learnt in class.
+
+![compare]({{ '/styles/images/M5P.jpg' | prepend: site.baseurl  }})
+
+The random forest is still the best. As a resemble method, M5P beats pruned decision tree and linear model in prediction accuracy, in a price of being less interpretable. The test result is consistant as we expected.
+
+4.Some notice using M5' Algorithm	{#notice}
+====================================
+
+From the discussion and example above, we can clearly know some features of M5' algorithm.
+
+1. As a resemble method, M5' Algortithm fits linear regression model instead a constant in leaves. It enhances the prediction accuracy, in a price of being less interpretable. We should make a trade-off if we are doing a research, since we sometimes need to reveal the pattern underlying the sample to make some intrepretations, more than making good predictions on data. We could not apply it blindly because it seems more accurate.
+
+2. For other simulation data in lecture, their class value is binary. In this case, we could not use M5P algorithm. Obviously, in this case, fitting a linear relationship on the leaves do not make sense. In applications, researchers using this algorithm mainly in something may have a numerical outcome, like water level and the melt tempreture on alloy. Actually, the M5P algorithm do not run if it detects that you outcome is binary.
 
 references		{#references}
 ====================================
-[1] Tibshirani, Robert. “Regression Shrinkage and Selection via the Lasso.”[J]. Journal of the Royal Statistical Society. Series B (Methodological), vol. 58, no. 1, 1996, pp. 267–288. JSTOR, www.jstor.org/stable/2346178.
+[1] Friedman, Jerome H. "Multivariate Adaptive Regression Splines."[J], The Annals of Statistics 19, no. 1 (1991): 1-67. http://www.jstor.org/stable/2241837.
 
-[2]Hoerl, Arthur E., and Robert W. Kennard. “Ridge Regression: Biased Estimation for Nonorthogonal Problems.” Technometrics, vol. 12, no. 1, 1970, pp. 55–67. JSTOR, www.jstor.org/stable/1267351.
+[2]Chaudhuri, Probal, Min-Ching Huang, Wei-Yin Loh, and Ruji Yao. "PIECEWISE-POLYNOMIAL REGRESSION TREES."[J], Statistica Sinica 4, no. 1 (1994): 143-67. http://www.jstor.org/stable/24305278.
 
-[3]Michael A. Nielsen. “Neural Networks and Deep Learning”[M]. Determination Press. 2015
+[3]Wang, Y. & Witten, I. H. (1996). Induction of model trees for predicting continuous classes. (Working paper 96/23)[R]. Hamilton, New Zealand: University of Waikato, Department of Computer Science.
 
-[4]Jiaming Mao. "Model_Selection_and_Regularization"[Z].2019-04-21.personal copy
+[4]K. Hornik, C. Buchta, and A. Zeileis. Open-source machine learning: R meets Weka.[J] Computational Statistics, 24(2):225{232, 2009. doi: 10.1007/s00180-008-0119-7.
 
-[5]Breiman, Leo. “Better Subset Regression Using the Nonnegative Garrote.”[J]. Technometrics, vol. 37, no. 4, 1995, pp. 373–384. JSTOR, www.jstor.org/stable/1269730.
+[5]JR Quinlan. Learning with continuous classes[A]. Anthony Adams and Leon Sterling. AI '92[C]. Proceedings of the 5th Australian Joint Conference on Artificial Intelligence. (1992). doi:10.1142/9789814536271
 
-[6]J Mayer, K Khairy, J Howard. “Drawing an elephant with four complex parameters”[J]. American Journal of Physics 78, 648 (2010); https://doi.org/10.1119/1.3254017
-
-[7]S. A. Dudani. The Distance-Weighted k-Nearest Neighbor Rule"[J]. IEEE Trans. on Systems, Man, and Cybernetics, Vol. SMC-6 (1976), pp. 325-327
-
-[8]Jeffrey B. Arnold, “A Set of Bayesian Notes”[Z].https://jrnold.github.io/bayesian_notes/
-
-Weekly Recommended Reading by myself					{#Reading}
-------------------------------------
-
-JOURNAL ARTICLE
-
-The effect of welfare payments on work: Regression discontinuity evidence from Ecuador
-
-Mariano Bosch and Norbert Schady
-
-Journal of Development Economics, Volume 139, 2019, Pages 17-27, ISSN 0304-3878
-
-DOI: 10.1016/j.jdeveco.2019.01.008.
-
-Recently, I am learning several method evaluating the treatment effect. Here is a example using the fuzzy Regression discontinuity method. Different form the traditional sharp RD method, not all the sample in treatment group are being treated. In this case, it means that not all the eligible households receive payments. Therefore, they did a two stage regression, using the eligibility and other control variable to predict the true payment. And then regress the payment to the workchoice of womens.
-
-Link    {#Link}
----------------------------------------------
- If you want to know more about how they can Drawing an elephant with four complex parameters, click to visit. https://aapt.scitation.org/doi/10.1119/
+[6]Jiaming Mao. "Decision_Trees_and_Ensemble_Methods"[Z].2019-05-05.personal copy
