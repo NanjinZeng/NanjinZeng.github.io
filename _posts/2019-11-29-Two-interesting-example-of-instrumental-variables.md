@@ -55,7 +55,7 @@ Relevance:
 2.2 countries’ geographic characteristics (Frankel and David, 1999) {#Frankel}
 ------------------------------------
 
-In AER paper <Does Trade Cause Growth?> (Frankel and David, 1999), they argue that openness and international  trade  could contribute to standards  of living. (i.e. if being open to the world economy will cause a country to be rich.) ). In this topic, a concern used to be that perhaps openness is a luxury that only rich countries can afford, without using this IV.
+In AER paper <Does Trade Cause Growth?> (Frankel and David, 1999), they argue that openness and international  trade  could contribute to standards  of living. (i.e. if being open to the world economy will cause a country to be rich.) In this topic, a concern used to be that perhaps openness is a luxury that only rich countries can afford, without using this IV.
 
 >Variable list
 >
