@@ -20,7 +20,7 @@ Our research group members go further to review the origin of this amazing theor
 Our work includes 3 sections. Section 1 is a summary of this paper. Section 2 is a empirical data application. Section 3 is our comment.
 
 
-1.Introduction		{#Introduction}
+1.Summary		{#Summary}
 ====================================
 The main idea of Markowitz's Portfolio Selection is to put forward a quantifiable method to balance the expected return and the risk of different portfolios, and to proof that this method can get a set of effective portfolio. The method determines a set of efficient combination to minimize variances of returns(V) under the condition of a given the expected return (E), or to maximize E under the condition of a given V. Using E-V method, proportions of each securities in the effective portfolio can be obtained; furthermore, the set of effective portfolio can be obtained. investors can choose the portfolio from the set and make their investment decisions according to their own risk preference.
 
