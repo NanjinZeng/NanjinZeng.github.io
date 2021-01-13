@@ -9,14 +9,7 @@ tag: Neural Network
 * content
 {:toc}
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-jax: ["input/TeX","output/HTML-CSS"],
-displayAlign: "left",
-displayIndent: "5em"
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 Li Zichao & Zeng Nanjin WISE IUEC 2016
 

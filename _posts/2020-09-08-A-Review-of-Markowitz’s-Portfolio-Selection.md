@@ -11,8 +11,6 @@ tag: finance
 
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-
-
 Zeng Nanjin, Huang Yebin,   Li Shuqi,   Liu Yixin,   Zhang Yichen
 
 programme:Master of Economics (quantitative economics)
