@@ -16,17 +16,24 @@ Zeng Nanjin
 programme:Master of Economics (quantitative economics)
 in National University of Singapore
 
-[to-download-pdf-version-of-these-appendixes](https://github.com/NanjinZeng/Microeconometrics/blob/master/HW/2019-05-05-Piecewise-Linear-Decision-Tree.pdf)
+[to-download-pdf-version-of-these-appendixes](https://NanjinZeng.github.io/asset/Research_Proposal_appendix_Zeng_Nanjin.pdf)
 
 Appendix 1  Literature Review		{#Review}
 ====================================
 A basic assumption is that, the state-owned enterprise is less efficient while the private-owned enterprise is more efficient. Therefore, transition from planned economy to market economy is to move production factors (capital and labor) from state-owned enterprise to private-owned enterprise.
+
 Why did the countries implemented “the shock therapy” have low efficiency in transition and experience recession? From De Melo et al. (1996) and Sachs (1996), scholar began to analyze the efficiency of transition. These two papers found that the liberalization index is positively correlated to economic growth in transition period. The Shock therapy slowed the recession rather than caused the recession. However, according to their later researches, the liberalization index does not have significant correlation with economic growth if they add more control variables (De Melo, 2001).
+
 After that, some scholars tried to analyze this question using empirical approach, including Campos (2000), Campos and Coricelli (2002), Havrylyshyn and Rooden(2003). They gave some political indicators and indexes which are positive correlated to economic growth, but these indicators and indexes are questioned with endogeneity. Popov (2007) found that the distortion of industrial structure before the transition is negative correlated to the economic growth in the transition period. He also finds that China is an outlier, which had high level of distortion of industrial structure and high economic growth rate in the transition period.
+
 On the other hand, some scholars tried to analyze this question using macroeconomic models. For the reason why “The Shock therapy” is not efficient, there are three types of related theories:
+
 Castanheira and Roland (2000) constructed a dynamic general equilibrium model with capital exclusivity assumption. The transition of labor depends on the accumulation of private capital. Thus, there is an optimal speed in transition, based on the speed of saving increase. If the transition is implemented rapidly and private saving is inefficient, the production of economy drops.
+
 The second type of theories tried to give explanation from the prospect of friction in transition. (Atkeson & Kehoe, 1997; Blanchard & Kremer, 1997; Roland & Verdier 1999). The friction in markets determines that the transition should be implemented gradually. For example, Aghion and Blanchard (1994) considered that since the existence of friction in labor market, the state-owned enterprise should not be closed too fast.
+
 Some scholars think that, the transition problem is not from ownership but from distortion of industrial structure. Xu and Lin (2011) constructed a model with partial capital exclusivity assumption. They considered that the government distorted the price of factors (wage rate and interest rate) to subsidy the heavy industry in planned economy. In 1990s, the new government tried to abolish such protective policies in a short time (“The Shock Therapy”). Since the state-owned enterprises (most of them are in heavy industry) were no longer profitable, labor and liquid capital flowed out from this sector. However, non-liquid capital (for example, specialized equipment) was abandoned. Thus, the production of economy drops.
+
 This research is stemmed from these existing researches.
 
 
@@ -36,7 +43,7 @@ Appendix 2 Some common setting in OLG model		{#OLG}
 In this economy, there are L identical labors. Each individual survives two period. In the first period, he provides 1 unit of labor inelastically. In the second period, he still needs to consume but does not provide labor.
 Each individual maximizes his life time utility,
 
->$$\text{\ensuremath{\max_{c_{1,t},c_{2,t+1}}U\left(c_{1,t},c_{2,t+1}\right)=\ln\left(c_{1,t}\right)+\frac{1}{1+\rho^{i}}\ln\left(c_{2,t+1}\right)}}$$
+>$$\max_{c_{1,t},c_{2,t+1}}U\left(c_{1,t},c_{2,t+1}\right)=ln\left(c_{1,t}\right)+\frac{1}{1+\rho^{i}}ln\left(c_{2,t+1}\right)$$
 
 ρ is the discount rate. Ci.t is his consumption in period t. The total income of this individual is the sum of his wage in period 1 and interest income in period 2. His budget constraint is 
 
@@ -45,7 +52,9 @@ Each individual maximizes his life time utility,
 Each sector in this economy has the same exogenous growing technology. The growth function is Cobb-Douglas form,
 
 >$$Y_{i,t}=A_{t}\left(K_{i,t}\right)^{\alpha}\left(L_{i,t}\right)^{1-\alpha}$$
+>
 >$$A_{t+1}=A_{t}\left(1+g_{t}\right)$$
+>
 >$$L_{t+1}=L_{t}\left(1+n\right)$$
 
 
